@@ -77,7 +77,6 @@ void App::pollEvents(sf::Event & e)
 {
 	while (window->pollEvent(e))
 	{
-		//client->input(e);
 		getCurrentState().handleEvent(e); //handle event in current state
 		switch (e.type)
 		{

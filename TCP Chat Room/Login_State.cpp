@@ -176,10 +176,6 @@ void Login_State::initGUI()
 	button3.setPosition(sf::Vector2f(button2.getPosition().x, button2.getPosition().y + 70));
 	button3.setID(std::string("NameInput"));
 	buttons.emplace_back(button3);
-
-	/*Gui::Button disconnectButton(sf::Vector2f(WIDTH - 90, HEIGHT - 30),
-		sf::Vector2f(80, 20), sf::Color::Transparent, std::string("Disconnect"), true);
-	buttons.emplace_back(disconnectButton);*/
 }
 
 
