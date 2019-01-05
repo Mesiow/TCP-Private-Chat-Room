@@ -133,7 +133,7 @@ void Client::Receive()
 
 		case MESSAGE:
 		{
-			std::string remoteMsg = id + ": " + message;
+			std::string remoteMsg = " " + id + ": " + message;
 			sf::Text remoteText(remoteMsg, *font, 20);
 			remoteText.setFillColor(sf::Color::Blue);
 			remoteText.setPosition(0.0f, (float)textYPosition * 30.0f);

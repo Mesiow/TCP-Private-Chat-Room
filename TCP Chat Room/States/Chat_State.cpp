@@ -32,8 +32,8 @@ void Chat_State::handleInput()
 		{
 			if (buttons[i].getButtonID() == "Disconnect")
 			{
-				app->pop();
-				//app->pushState(std::make_unique<Login_State>(*app)); //pop the current chat state and go back to login state
+					app->pop(); //set pop current state to true
+					client->disconnect();
 			}
 		}
 	}

@@ -100,7 +100,6 @@ void Login_State::handleInput()
 			{
 				app->pushState(std::make_unique<Chat_State>(*app, clientInfo)); //change state to chat state
 			}
-
 			buttonClicked = &buttons[i];
 		}
 	}
