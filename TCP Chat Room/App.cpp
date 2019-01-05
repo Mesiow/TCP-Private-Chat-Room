@@ -1,5 +1,5 @@
 #include "App.h"
-#include "Login_State.h"
+#include "States/Login_State.h"
 
 //TODO: continue abstracting data into the state classes
 
@@ -28,8 +28,11 @@ void App::run()
 
 		clear();
 	
+		update();
 		state.update();
 		state.draw(*window);
+
+		pop_state();
 
 		display();
 	}
@@ -55,7 +58,8 @@ void App::init(const char option, const unsigned short serverPort)
 
 void App::update()
 {
-
+	system("cls");
+	std::cout << "Stack size: " << states.size() << std::endl;
 }
 
 void App::draw()
@@ -88,10 +92,31 @@ void App::pollEvents(sf::Event & e)
 
 void App::pushState(std::unique_ptr<State> newState)
 {
-	states.push(std::move(newState));
+	states.push_back(std::move(newState));
 }
 
 void App::pop_state()
 {
-	states.pop();
+	if (popState)
+	{
+		popState = false;
+		if (exit)
+		{
+			states.clear();
+			return;
+		}
+		else if (changeState)
+		{
+			changeState = false;
+			states.pop_back(); //pop off last state
+			pushState(std::move(change)); //push changed state in
+			return;
+		}
+		states.pop_back();
+	}
+}
+
+void App::pop()
+{
+	popState = true;
 }

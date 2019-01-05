@@ -1,6 +1,6 @@
 #include "Login_State.h"
 #include "Chat_State.h"
-#include "App.h"
+#include "../App.h"
 
 Login_State::Login_State(App & app)
 	:State(app)

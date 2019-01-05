@@ -3,7 +3,7 @@
 #include <SFML/Network.hpp>
 #include <vector>
 #include <unordered_map>
-#include "Utils.h"
+#include "Utils/Utils.h"
 
 //TODO add disconnect feature and notify other clients when someone has left the chat
 

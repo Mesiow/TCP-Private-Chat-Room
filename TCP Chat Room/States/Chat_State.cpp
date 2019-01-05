@@ -1,5 +1,5 @@
 #include "Chat_State.h"
-#include "App.h"
+#include "../App.h"
 #include "Login_State.h"
 
 Chat_State::Chat_State(App &app, info &inputInfo)
@@ -32,7 +32,7 @@ void Chat_State::handleInput()
 		{
 			if (buttons[i].getButtonID() == "Disconnect")
 			{
-				app->pop_state();
+				app->pop();
 				//app->pushState(std::make_unique<Login_State>(*app)); //pop the current chat state and go back to login state
 			}
 		}

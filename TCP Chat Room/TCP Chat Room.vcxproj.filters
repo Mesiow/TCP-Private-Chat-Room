@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Utilities">
-      <UniqueIdentifier>{34e1ca10-0d22-498f-b05e-f0a445a36976}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\States">
-      <UniqueIdentifier>{dde5680a-041c-4f37-abcb-257faa0388a5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,14 +30,14 @@
     <ClCompile Include="Gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Login_State.cpp">
-      <Filter>Header Files\States</Filter>
+    <ClCompile Include="States\Chat_State.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Chat_State.cpp">
-      <Filter>Header Files\States</Filter>
+    <ClCompile Include="States\Login_State.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Header Files\Utilities</Filter>
+    <ClCompile Include="Utils\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,20 +53,20 @@
     <ClInclude Include="Gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files\States</Filter>
+    <ClInclude Include="States\Chat_State.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Login_State.h">
-      <Filter>Header Files\States</Filter>
+    <ClInclude Include="States\Login_State.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Chat_State.h">
-      <Filter>Header Files\States</Filter>
+    <ClInclude Include="States\State.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files\Utilities</Filter>
+    <ClInclude Include="Utils\ResourceManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files\Utilities</Filter>
+    <ClInclude Include="Utils\Utils.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

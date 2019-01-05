@@ -1,29 +1,36 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "State.h"
-#include "Gui.h"
-#include "Client.h"
+#include "../Gui.h"
 
-class Chat_State : public State
+class App;
+
+class Login_State : public State
 {
 public:
-	Chat_State(App &app, info &inputInfo);
-	~Chat_State();
+	Login_State(App &app);
+	~Login_State();
 
 	void handleEvent(sf::Event &e)override;
 	void handleInput()override;
 	void update()override;
 	void draw(sf::RenderTarget &target)override;
 
+public:
+	void initGUI();
+
 private:
-	void initClient();
-	void initUI();
+	info clientInfo;
 
 private:
 	std::vector<Gui::Box> boxes;
 	std::vector<Gui::Button> buttons;
 	std::vector<Gui::Text> texts;
+	std::vector<sf::Text> sfTexts;
+	sf::Font *font;
 
 private:
-	info clientInfo;
-	Client *client;
+	sf::Text currentText;
+	std::string text;
+	Gui::Button *buttonClicked;
 };

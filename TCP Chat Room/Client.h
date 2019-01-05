@@ -3,8 +3,8 @@
 #include <SFML/Network.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Utils.h"
-#include "ResourceManager.h"
+#include "Utils/Utils.h"
+#include "Utils/ResourceManager.h"
 
 class Client
 {

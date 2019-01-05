@@ -3,8 +3,8 @@
 #include "Server.h"
 #include "Client.h"
 #include "Gui.h"
-#include "State.h"
-#include "ResourceManager.h"
+#include "States/State.h"
+#include "Utils/ResourceManager.h"
 #include <unordered_map>
 #include <memory>
 #include <stack>
@@ -34,11 +34,14 @@ public:
 	inline void pushState(Args&&... args);
 
 	void pushState(std::unique_ptr<State> newState);
-	void pop_state();
+	void pop();
 
 public:
-	State &getCurrentState() { return *states.top(); }
+	State &getCurrentState() { return *states.back(); }
 	static sf::RenderWindow &getWindow() { return *window; }
+
+private:
+	void pop_state();
 
 private:
 	static sf::RenderWindow *window;
@@ -46,14 +49,18 @@ private:
 	Client *client;
 
 private:
-	std::stack<std::unique_ptr<State>> states;
+	std::vector<std::unique_ptr<State>> states;
+	std::unique_ptr<State> change;
 
 private:
 	char host;
+	bool popState = false;
+	bool changeState = false;
+	bool exit = false;
 };
 
 template<typename T, typename... Args>
 inline void App::pushState(Args&&... args)
 {
-	pushState(std::make_unique<T>(std::forward<Args>(args)...)); // push new state into stack container
+	pushState(std::make_unique<T>(std::forward<Args>(args)...)); // push new state into vector
 }
