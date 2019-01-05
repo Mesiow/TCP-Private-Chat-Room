@@ -65,6 +65,8 @@ void Chat_State::initClient()
 {
 	if (!client->connect())
 		std::cout << "Client failed to connect" << std::endl;
+
+	client->login(); //send a login packet to the server
 }
 
 void Chat_State::initUI()

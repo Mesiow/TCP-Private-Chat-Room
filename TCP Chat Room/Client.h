@@ -14,6 +14,7 @@ public:
 
 public:
 	bool connect();
+	void login();
 	void disconnect();
 	void Receive();
 

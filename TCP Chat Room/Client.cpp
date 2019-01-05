@@ -32,6 +32,15 @@ bool Client::connect()
 	return false;
 }
 
+void Client::login()
+{
+	sf::Packet send;
+	Packet pack = LOGIN;
+	msg = "";
+	send << id << msg << pack;
+	clientSocket.send(send);
+}
+
 void Client::disconnect()
 {
 	sf::Packet send;
@@ -41,13 +50,6 @@ void Client::disconnect()
 	clientSocket.send(send); //send disconnection packet
 
 	clientSocket.disconnect();
-
-	//textYPosition++;
-	sf::Text disconnection("You disconnected", *font, 20);
-	disconnection.setFillColor(sf::Color::White);
-	disconnection.setPosition(0.0f, (float)textYPosition * 30.0f);
-	texts.push_back(disconnection);
-
 }
 
 void Client::draw(sf::RenderTarget & target)
@@ -130,6 +132,16 @@ void Client::Receive()
 		textYPosition++;
 		switch (packetType)
 		{
+
+		case LOGIN:
+		{
+			std::string mesg = id + " connected";
+			sf::Text connectText(mesg, *font, 20);
+			connectText.setFillColor(sf::Color::White);
+			connectText.setPosition(0.0f, (float)textYPosition * 30.0f);
+			texts.push_back(connectText);
+		}
+		break;
 
 		case MESSAGE:
 		{
