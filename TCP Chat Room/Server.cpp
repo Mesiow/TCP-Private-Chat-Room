@@ -56,7 +56,7 @@ void Server::Accept()
 
 void Server::Send()
 {
-	for (int i = 0; i < clients.size(); i++)
+	for (std::size_t i = 0; i < clients.size(); i++)
 	{
 		if (selector.isReady(*clients[i])) //if we are ready to receive connections for any of the clients
 		{
@@ -72,7 +72,7 @@ void Server::Send()
 				packet >> id >> msg >> pack; //write contents into id, nsg and packet type
 				send << id << msg << (Packet)pack; //put that data into a send packet
 
-				for (int j = 0; j < clients.size(); j++)
+				for (std::size_t j = 0; j < clients.size(); j++)
 				{
 					if (i != j) //send to every other client but the one that sent it
 					{

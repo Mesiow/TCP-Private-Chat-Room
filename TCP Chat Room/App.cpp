@@ -27,8 +27,7 @@ void App::run()
 		state.handleInput();
 
 		clear();
-	
-		update();
+
 		state.update();
 		state.draw(*window);
 
@@ -58,8 +57,7 @@ void App::init(const char option, const unsigned short serverPort)
 
 void App::update()
 {
-	system("cls");
-	std::cout << "Stack size: " << states.size() << std::endl;
+
 }
 
 void App::draw()

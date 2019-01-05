@@ -45,7 +45,7 @@ void Client::disconnect()
 	//textYPosition++;
 	sf::Text disconnection("You disconnected", *font, 20);
 	disconnection.setFillColor(sf::Color::White);
-	disconnection.setPosition(0, textYPosition * 30);
+	disconnection.setPosition(0.0f, (float)textYPosition * 30.0f);
 	texts.push_back(disconnection);
 
 }
@@ -79,7 +79,7 @@ void Client::input(sf::Event &e)
 			text.setFillColor(sf::Color::Red); //red indicates the msg has been sent
 			
 			Send(); //send message to server
-			text.setPosition(10, textYPosition * 30);
+			text.setPosition(10.0f, (float)textYPosition * 30.0f);
 
 			texts.push_back(text);
 			msg = " ";
@@ -136,7 +136,7 @@ void Client::Receive()
 			std::string remoteMsg = id + ": " + message;
 			sf::Text remoteText(remoteMsg, *font, 20);
 			remoteText.setFillColor(sf::Color::Blue);
-			remoteText.setPosition(0, textYPosition * 30);
+			remoteText.setPosition(0.0f, (float)textYPosition * 30.0f);
 			texts.push_back(remoteText);
 		}
 			break;
@@ -146,7 +146,7 @@ void Client::Receive()
 			std::string mesg = id + " disconnected";
 			sf::Text disconnectText(mesg, *font, 20);
 			disconnectText.setFillColor(sf::Color::White);;
-			disconnectText.setPosition(0, textYPosition * 30);
+			disconnectText.setPosition(0.0f, (float)textYPosition * 30.0f);
 			texts.push_back(disconnectText);
 		}
 		break;
