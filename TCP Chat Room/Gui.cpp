@@ -37,8 +37,6 @@ namespace Gui
 	//end
 
 
-
-
 	//start
 	Button::Button(sf::Vector2f position, sf::Vector2f size, sf::Color color, const std::string buttonID, bool transparent)
 	{
@@ -101,7 +99,7 @@ namespace Gui
 		if (sf::Mouse::isButtonPressed)
 		{
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
-				&& button.getGlobalBounds().contains((float)mpos.x, (float)mpos.y)) //if the buttons contains the mousepos
+				&& buttonState==State::HOVERING) //if the buttons contains the mousepos
 				buttonState = State::CLICKED;
 		}
 	}

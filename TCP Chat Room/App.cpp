@@ -31,9 +31,9 @@ void App::run()
 		state.update();
 		state.draw(*window);
 
-		pop_state();
-
 		display();
+
+		pop_state();
 	}
 }
 

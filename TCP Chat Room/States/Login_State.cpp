@@ -96,11 +96,11 @@ void Login_State::handleInput()
 	{
 		if (buttons[i].getButtonState() == Gui::Button::State::CLICKED)
 		{
+			buttonClicked = &buttons[i];
 			if (buttons[i].getButtonID() == "Connect")
 			{
 				app->pushState(std::make_unique<Chat_State>(*app, clientInfo)); //change state to chat state
 			}
-			buttonClicked = &buttons[i];
 		}
 	}
 }

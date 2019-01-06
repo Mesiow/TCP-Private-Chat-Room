@@ -5,8 +5,6 @@
 #include <unordered_map>
 #include "Utils/Utils.h"
 
-//TODO add disconnect feature and notify other clients when someone has left the chat
-
 class Server
 {
 public:

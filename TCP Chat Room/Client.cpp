@@ -128,6 +128,8 @@ void Client::Receive()
 	{
 		recv >> id >> message >> pack;
 		auto packetType = (Packet)pack;
+		
+		std::cout << "Packet type: " << packetType << std::endl;
 
 		textYPosition++;
 		switch (packetType)
@@ -135,7 +137,7 @@ void Client::Receive()
 
 		case LOGIN:
 		{
-			std::string mesg = id + " connected";
+			std::string mesg = " " + id + " connected";
 			sf::Text connectText(mesg, *font, 20);
 			connectText.setFillColor(sf::Color::White);
 			connectText.setPosition(0.0f, (float)textYPosition * 30.0f);
@@ -155,7 +157,7 @@ void Client::Receive()
 
 		case DISCONNECT:
 		{
-			std::string mesg = id + " disconnected";
+			std::string mesg = " " + id + " disconnected";
 			sf::Text disconnectText(mesg, *font, 20);
 			disconnectText.setFillColor(sf::Color::White);;
 			disconnectText.setPosition(0.0f, (float)textYPosition * 30.0f);
