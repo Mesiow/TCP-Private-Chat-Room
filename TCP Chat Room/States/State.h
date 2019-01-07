@@ -8,6 +8,13 @@ struct info
 	std::string ipaddress;
 	unsigned short port;
 	std::string name;
+
+	void clear()
+	{
+		ipaddress.clear();
+		name.clear();
+		port = 0;
+	}
 };
 
 

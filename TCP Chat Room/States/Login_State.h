@@ -18,6 +18,7 @@ public:
 
 public:
 	void initGUI();
+	void clearData();
 
 private:
 	info clientInfo;

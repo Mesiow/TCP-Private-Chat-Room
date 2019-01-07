@@ -100,6 +100,7 @@ void Login_State::handleInput()
 			if (buttons[i].getButtonID() == "Connect")
 			{
 				app->pushState(std::make_unique<Chat_State>(*app, clientInfo)); //change state to chat state
+				clearData();
 			}
 		}
 	}
@@ -175,6 +176,13 @@ void Login_State::initGUI()
 	button3.setPosition(sf::Vector2f(button2.getPosition().x, button2.getPosition().y + 70));
 	button3.setID(std::string("NameInput"));
 	buttons.emplace_back(button3);
+}
+
+void Login_State::clearData()
+{
+	//free data we don't need in the chat state
+	sfTexts.clear();
+	clientInfo.clear();
 }
 
 

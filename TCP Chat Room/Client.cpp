@@ -49,6 +49,10 @@ void Client::disconnect()
 	send << id << msg << pack;
 	clientSocket.send(send); //send disconnection packet
 
+	//clear messages buffer
+	texts.clear();
+	textYPosition = 1; 
+
 	clientSocket.disconnect();
 }
 
@@ -84,7 +88,7 @@ void Client::input(sf::Event &e)
 			text.setPosition(10.0f, (float)textYPosition * 30.0f);
 
 			texts.push_back(text);
-			msg = " ";
+			msg = "";
 			drawText.setString(msg);
 		}
 	}
