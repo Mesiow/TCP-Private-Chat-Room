@@ -33,6 +33,7 @@ void Chat_State::handleInput()
 			if (buttons[i].getButtonID() == "Disconnect")
 			{
 					app->pop(); //set pop current state to true
+					clientInfo.clear();
 					client->disconnect();
 			}
 		}
@@ -42,6 +43,7 @@ void Chat_State::handleInput()
 void Chat_State::update()
 {
 	client->Receive();
+	client->updateUsersConnected();
 
 	for (auto &b : buttons)
 		b.update(App::getWindow());
@@ -87,4 +89,7 @@ void Chat_State::initUI()
 
 	Gui::Text disconnectText(sf::Vector2f(WIDTH - 130, HEIGHT - 25), sf::Color::White, *font, "Disconnect", 15);
 	texts.emplace_back(disconnectText);
+
+	Gui::Text users(sf::Vector2f(20, 570), sf::Color::White, *font, "Users Connected: ", 20);
+	texts.emplace_back(users);
 }

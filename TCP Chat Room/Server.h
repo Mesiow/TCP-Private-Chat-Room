@@ -20,6 +20,9 @@ private:
 	void Send();
 
 private:
+	void updateUserCount();
+	
+private:
 	sf::SocketSelector selector; //selector to handle multiple clients
 	sf::TcpListener listener;
 	std::vector<sf::TcpSocket*> clients;
@@ -29,4 +32,5 @@ private:
 	unsigned short port;
 	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
 	bool running = true;
+	int clientCount;
 };

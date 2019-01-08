@@ -27,7 +27,8 @@ void Login_State::handleEvent(sf::Event & e)
 				currentText.setString(text);
 			}
 		}
-		else if (e.key.code == sf::Keyboard::Return)
+		else if (e.key.code == sf::Keyboard::Return ||
+			     e.key.code==sf::Keyboard::Tab)
 		{
 			sfTexts.emplace_back(currentText);
 

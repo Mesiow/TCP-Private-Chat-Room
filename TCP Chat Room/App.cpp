@@ -84,6 +84,11 @@ void App::pollEvents(sf::Event & e)
 		{
 		case sf::Event::Closed:
 			window->close();	
+
+		case sf::Event::Resized:
+			//sf::FloatRect area(0, 0, e.size.width, e.size.height); //creates a rect starting at 0, 0 and is as big as window width and height
+			//window->setView(sf::View(area));
+			break;
 		}
 	}
 }
