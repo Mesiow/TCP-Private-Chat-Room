@@ -9,7 +9,7 @@
 class Client
 {
 public:
-	Client(const std::string name, sf::IpAddress address, unsigned short remotePort);
+	Client(const std::string &id, sf::IpAddress address, unsigned short remotePort);
 	~Client();
 
 public:

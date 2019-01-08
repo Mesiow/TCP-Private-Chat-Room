@@ -1,7 +1,7 @@
 #include "Client.h"
 
 int Client::textYPosition = 1;
-Client::Client(const std::string id, sf::IpAddress address, unsigned short serverPort)
+Client::Client(const std::string &id, sf::IpAddress address, unsigned short serverPort)
 {
 	this->id = id;
 	this->serverAddress = address;
@@ -39,9 +39,6 @@ void Client::login()
 	msg = "";
 	send << id << msg << pack;
 	clientSocket.send(send);
-
-	initUsersConnected();
-	updateUsersConnected();
 }
 
 void Client::disconnect()
@@ -62,7 +59,6 @@ void Client::disconnect()
 void Client::draw(sf::RenderTarget & target)
 {
 	target.draw(drawText);
-	target.draw(users);
 	for(std::size_t i=0; i<texts.size(); i++)
 		target.draw(texts[i]);
 }

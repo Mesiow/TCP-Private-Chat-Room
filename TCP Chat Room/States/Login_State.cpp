@@ -30,25 +30,18 @@ void Login_State::handleEvent(sf::Event & e)
 		else if (e.key.code == sf::Keyboard::Return ||
 			     e.key.code==sf::Keyboard::Tab)
 		{
-			sfTexts.emplace_back(currentText);
 
 			if (buttonClicked->getButtonID() == "IPInput")
-			{
 				clientInfo.ipaddress = currentText.getString();
-				std::cout << "Client ip address entered: " << clientInfo.ipaddress << std::endl;
-			}
 			else if (buttonClicked->getButtonID() == "PortInput")
 			{
 				std::string portString = currentText.getString(); //getString returns an sf::String, setting it to a standard string implicitly converts it
 				clientInfo.port = std::stoi(portString); //std::stoi, string to int conversion
-				std::cout << "Client port entered: " << clientInfo.port << std::endl;
 			}
 			else if (buttonClicked->getButtonID() == "NameInput")
-			{
 				clientInfo.name = currentText.getString();
-				std::cout << "Client name entered: " << clientInfo.name << std::endl;
-			}
 
+			sfTexts.emplace_back(currentText);
 			text.clear();
 			currentText.setString(text);
 		}
@@ -61,30 +54,33 @@ void Login_State::handleEvent(sf::Event & e)
 		if (key == 8 || key == 13 || key == 27)
 			break;
 
-		text += (char)key;
-		if (buttonClicked->getButtonID() == "IPInput")
+		if (buttonClicked)
 		{
-			auto pos = buttonClicked->getPosition();
+			text += (char)key;
+			if (buttonClicked->getButtonID() == "IPInput")
+			{
+				auto pos = buttonClicked->getPosition();
 
-			sf::Text input(text, *font, 15);
-			input.setPosition(sf::Vector2f(pos.x - 70, pos.y - 10));
-			currentText = input;
-		}
-		else if (buttonClicked->getButtonID() == "PortInput")
-		{
-			auto pos = buttonClicked->getPosition();
+				sf::Text input(text, *font, 15);
+				input.setPosition(sf::Vector2f(pos.x - 70, pos.y - 10));
+				currentText = input;
+			}
+			else if (buttonClicked->getButtonID() == "PortInput")
+			{
+				auto pos = buttonClicked->getPosition();
 
-			sf::Text input(text, *font, 15);
-			input.setPosition(sf::Vector2f(pos.x - 70, pos.y - 10));
-			currentText = input;
-		}
-		else if (buttonClicked->getButtonID() == "NameInput")
-		{
-			auto pos = buttonClicked->getPosition();
+				sf::Text input(text, *font, 15);
+				input.setPosition(sf::Vector2f(pos.x - 70, pos.y - 10));
+				currentText = input;
+			}
+			else if (buttonClicked->getButtonID() == "NameInput")
+			{
+				auto pos = buttonClicked->getPosition();
 
-			sf::Text input(text, *font, 15);
-			input.setPosition(sf::Vector2f(pos.x - 70, pos.y - 10));
-			currentText = input;
+				sf::Text input(text, *font, 15);
+				input.setPosition(sf::Vector2f(pos.x - 70, pos.y - 10));
+				currentText = input;
+			}
 		}
 	}
 	break;
@@ -127,8 +123,8 @@ void Login_State::draw(sf::RenderTarget & target)
 	for (auto &t : sfTexts)
 		target.draw(t);
 
-
 	target.draw(currentText);
+
 }
 
 void Login_State::initGUI()

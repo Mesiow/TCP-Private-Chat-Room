@@ -20,18 +20,17 @@ public:
 	void initGUI();
 	void clearData();
 
-private:
-	info clientInfo;
 
 private:
 	std::vector<Gui::Box> boxes;
 	std::vector<Gui::Button> buttons;
 	std::vector<Gui::Text> texts;
 	std::vector<sf::Text> sfTexts;
+	sf::Text currentText;
 	sf::Font *font;
 
 private:
-	sf::Text currentText;
+	info clientInfo;
 	std::string text;
 	Gui::Button *buttonClicked;
 };
