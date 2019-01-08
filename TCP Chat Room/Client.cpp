@@ -21,12 +21,12 @@ bool Client::connect()
 	if (clientSocket.connect(serverAddress, serverPort) == sf::Socket::Done)
 	{
 		std::cout << "You connected" << std::endl;
+		clientSocket.setBlocking(false);
 	
 		sf::Packet send;
 		send << id;
-		clientSocket.send(send);
-		clientSocket.setBlocking(false);
-
+		clientSocket.send(send); //send id
+		
 		return true;
 	}
 	return false;
@@ -41,15 +41,15 @@ void Client::login()
 	clientSocket.send(send);
 
 	initUsersConnected();
+	updateUsersConnected();
 }
 
 void Client::disconnect()
 {
 	sf::Packet send;
 	Packet pack = DISCONNECT;
-	std::size_t size = 0; //var for number of users
 	msg = "";
-	send << id << msg << pack << size;
+	send << id << msg << pack;
 	clientSocket.send(send); //send disconnection packet
 
 	//clear messages buffer
@@ -118,22 +118,8 @@ void Client::Send()
 {
 	sf::Packet send;
 	Packet pack = MESSAGE;
-	std::size_t size=0;
-	send << id << msg << pack << size;
+	send << id << msg << pack;
 	clientSocket.send(send); //send id , msg and packet type to server
-}
-
-void Client::initUsersConnected()
-{
-	sf::Text usersConnected(std::to_string(connected), *font, 20);
-	usersConnected.setFillColor(sf::Color::White);
-	usersConnected.setPosition(sf::Vector2f(190, 570));
-	users = usersConnected;
-}
-
-void Client::updateUsersConnected()
-{
-	users.setString(std::to_string(connected));
 }
 
 void Client::Receive()
@@ -142,16 +128,14 @@ void Client::Receive()
 	std::string id;
 	std::string message;
     std::uint32_t pack; //packet type
-	std::size_t size; //users connected
 
 	if (clientSocket.receive(recv) != sf::Socket::Done)
 		return;
 
 	if (recv.getDataSize() > 0) //if bytes received are greater than zero
 	{
+		recv >> id >> message >> pack;
 
-		recv >> id >> message >> pack >> size;
-		connected = size;
 		auto packetType = (Packet)pack;
 		
 		std::cout << "Packet type: " << packetType << std::endl;

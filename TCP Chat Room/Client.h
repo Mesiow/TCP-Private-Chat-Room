@@ -20,10 +20,6 @@ public:
 
 private:
 	void Send();
-	void initUsersConnected();
-
-public:
-	void updateUsersConnected();
 
 public:
 	void draw(sf::RenderTarget &target);
@@ -39,11 +35,8 @@ private:
 	sf::Font *font;
 	std::vector<sf::Text> texts; //sent texts to store and draw
 	sf::Text drawText; //typing text to draw currently
-	sf::Text users; //text to draw current number of users
 	std::string msg;
-	std::size_t connected;
 	
 private:
 	static int textYPosition;
-	bool firstSent = true;
 };

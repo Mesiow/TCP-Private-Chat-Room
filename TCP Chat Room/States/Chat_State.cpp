@@ -43,7 +43,6 @@ void Chat_State::handleInput()
 void Chat_State::update()
 {
 	client->Receive();
-	client->updateUsersConnected();
 
 	for (auto &b : buttons)
 		b.update(App::getWindow());

@@ -48,6 +48,7 @@ void Server::Accept()
 	{
 		packet >> id; //put packet contents into id
 		clientID[socket->getRemotePort()] = socket->getRemoteAddress();
+		clientCount++;
 	}
 
 	std::cout << id << " has connected to the chat" << std::endl;
@@ -70,11 +71,10 @@ void Server::Send()
 				std::string id;
 				std::string msg;
 				std::uint32_t pack; //packet type
-				std::size_t size;
 				
 
-				packet >> id >> msg >> pack >> size; //write contents into id, msg and packet type
-				send << id << msg << (Packet)pack << clients.size(); //put that data into a send packet
+				packet >> id >> msg >> pack; //write contents into id, msg and packet type
+				send << id << msg << (Packet)pack; //put that data into a send packet
 
 				for (std::size_t j = 0; j < clients.size(); j++)
 				{
@@ -83,24 +83,6 @@ void Server::Send()
 						clients[j]->send(send); //send id and message to clients
 					}
 				}
-			}
-		}
-	}
-}
-
-void Server::updateUserCount()
-{
-	clientCount++;
-	for (std::size_t i = 0; i < clients.size(); i++)
-	{
-		if (selector.isReady(*clients[i]))
-		{
-			sf::Packet send;
-			send << clientCount;
-
-			for (std::size_t j = 0; j < clients.size(); j++)
-			{
-				clients[j]->send(send); //send number of clients in the server
 			}
 		}
 	}

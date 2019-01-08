@@ -4,4 +4,5 @@ enum Packet
 	LOGIN,
 	MESSAGE,
 	DISCONNECT,
+	USERS,
 };

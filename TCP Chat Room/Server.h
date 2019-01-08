@@ -32,5 +32,5 @@ private:
 	unsigned short port;
 	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
 	bool running = true;
-	int clientCount;
+	std::size_t clientCount;
 };
